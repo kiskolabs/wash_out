@@ -1,6 +1,7 @@
 xml.instruct!
 xml.tag! "soap:Envelope", "xmlns:soap" => 'http://schemas.xmlsoap.org/soap/envelope/',
                           "xmlns:xsd" => 'http://www.w3.org/2001/XMLSchema',
+                          "xmlns:tiet" => 'http://www.kela.fi/VuokranantajaKysely/Tietotyypit',
                           "xmlns:tns" => @namespace do
   if !header.nil?
     xml.tag! "soap:Header" do

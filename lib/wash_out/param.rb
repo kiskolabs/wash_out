@@ -22,7 +22,13 @@ module WashOut
       if soap_config.camelize_wsdl.to_s == 'lower'
         @name = @name.camelize(:lower)
       elsif soap_config.camelize_wsdl
-        @name = @name.camelize
+        # Custom handling of parameters that use a different namespace
+        if @name.include?("tiet:")
+          split_name = @name.split("tiet:")
+          @name = ["tiet", split_name.last.camelize].join(":")
+        else
+          @name = @name.camelize
+        end
       end
 
       if type.is_a?(Symbol)
