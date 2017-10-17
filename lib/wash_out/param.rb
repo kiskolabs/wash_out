@@ -23,9 +23,9 @@ module WashOut
         @name = @name.camelize(:lower)
       elsif soap_config.camelize_wsdl
         # Custom handling of parameters that use a different namespace
-        if @name.include?("tiet:")
-          split_name = @name.split("tiet:")
-          @name = ["tiet", split_name.last.camelize].join(":")
+        split_name = @name.split(":")
+        if split_name.size > 1
+          @name = [split_name.first, split_name.last.camelize].join(":")
         else
           @name = @name.camelize
         end
